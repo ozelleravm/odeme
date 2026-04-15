@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ödeme</title>
+
+
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  text-align: center;
+}
+
+/* ÜST ALAN */
+.header {
+  background: #ffffff;
+  padding: 20px 10px;
+}
+
+.header img {
+  width: 160px;
+  max-width: 80%;
+}
+
+/* KART */
+.card {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  margin: -20px auto 20px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* BAŞLIK */
+.title img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* LABEL */
+.label {
+  font-size: 14px;
+  color: #777;
+  margin: 10px 0 5px;
+  text-align: left;
+}
+
+/* BİLGİ */
+.info {
+  background: #f1f1f1;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  word-break: break-word;
+  font-size: 14px;
+}
+
+/* BUTON */
+.button {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 15px;
+}
+
+.button:hover {
+  background: #b71c1c;
+}
+
+/* MOBİL DAHA KÜÇÜK EKRAN */
+@media (max-width: 480px) {
+  .header img {
+    width: 130px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .info {
+    font-size: 13px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img src="özeller logo.png" alt="Özeller Logo">
+</div>
+
+<!-- KART -->
+<div class="card">
+  <div class="title">
+    <img src="Ekran görüntüsü 2026-04-12 211042.png" alt="">
+  </div>
+
+  <div class="label">Alıcı Adı</div>
+  <div class="info">
+    ÖZELLER DAYANIKLI TÜKETİM MALLARI LTD. ŞTİ.
+  </div>
+
+  <div class="label">IBAN</div>
+  <div id="iban" class="info">
+    TR 49 0001 0023 2941 8015 6450 02
+  </div>
+
+  <div class="label">Açıklama </div>
+  <div id="iban" class="info">
+    [Ad Soyad]
+  </div>
+  
+   <div class="label">!!! ÖNEMLİ !!!</div>
+  <div id="iban" class="info">
+    !!!ÜCRETİ GÖNDEREN KİŞİNİN ADI SOYADI YAZMASI GEREKMEKTEDİR!!!
+  </div>
+
+  
+  <button class="button" onclick="copyIBAN()">
+    IBAN Kopyala
+  </button>
+</div>
+
+<script>
+function copyIBAN() {
+  var text = document.getElementById("iban").innerText;
+  navigator.clipboard.writeText(text);
+  alert("IBAN kopyalandı");
+}
+</script>
+
+</body>
+</html>
