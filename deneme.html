@@ -13,122 +13,149 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* STORY BOYUTU (9:16) */
-.story {
-  width: 360px;
-  height: 640px;
-  background: #000; /* SİYAH YAPILDI */
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  display: flex;
-  flex-direction: column;
+  background: linear-gradient(135deg, #ececec, #d6d6d6);
+  text-align: center;
 }
 
 /* HEADER */
 .header {
-  background: #ffffff; /* SİYAH */
-  padding: 15px;
-  text-align: center;
+  padding: 20px;
 }
 
 .header img {
-  width: 140px;
+  width: 150px;
 }
 
-/* İÇERİK */
-.content {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  background: #ffffff; /* SİYAH */
+/* KART */
+.card {
+  position: relative;
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 25px 20px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+/* 🔴 KURDELE */
+.ribbon {
+  position: absolute;
+  top: 15px;
+  right: -60px;
+  background: #d32f2f;
+  color: white;
+  padding: 8px 60px;
+  transform: rotate(45deg);
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
 /* BAŞLIK */
 .title img {
-  width: 100%;
-  max-width: 220px;
-  display: block;
-  margin: 0 auto 15px;
+  width: 200px;
+  margin-bottom: 15px;
 }
 
 /* LABEL */
 .label {
   font-size: 13px;
-  color: #ff0000; /* BEYAZ */
-  margin: 12px 0 5px;
+  color: #777;
+  margin: 10px 0 5px;
+  text-align: left;
 }
 
 /* BİLGİ */
 .info {
-  background: #ffffff; /* KOYU SİYAH */
-  color: #000000;
+  background: #f7f7f7;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 12px;
   font-weight: bold;
   font-size: 14px;
-  word-break: break-word;
-  box-shadow: 0 2px 10px rgb(0, 0, 0);
+  margin-bottom: 8px;
 }
 
-/* UYARI */
-.warning {
-  background: #ff0000;
-  color: #ffffff;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 13px;
-  margin-top: 15px;
-  font-weight: bold;
-  text-align: center;
+/* BUTON */
+.button {
+  background: linear-gradient(45deg, #d32f2f, #ff5252);
+  color: white;
+  border: none;
+  padding: 13px;
+  width: 100%;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
 </style>
 </head>
 
 <body>
 
-<div class="story">
+<div class="header">
+  <img src="logo.png">
+</div>
 
-  <div class="header">
-    <img src="özeller logo.png" alt="Logo">
+<div class="card">
+
+  <!-- 🔥 KURDELE -->
+  <div class="ribbon">HAVALE</div>
+
+  <div class="title">
+    <img src="Ekran görüntüsü 2026-04-12 211042.png">
   </div>
 
-  <div class="content">
-
-    <div class="title">
-      <img src="Ziraat_Bankası_logo.svg.png" alt="">
-    </div>
-
-    <div class="label">Alıcı adı</div>
-    <div class="info">
-      ÖZELLER DAYANIKLI TÜKETİM MALLARI LTD. ŞTİ.
-    </div>
-
-    <div class="label">Iban</div>
-    <div class="info">
-      TR 49 0001 0023 2941 8015 6450 02
-    </div>
-
-    <div class="label">Açıklama</div>
-    <div class="info">
-      [Ad Soyad]
-    </div>
-
-    <div class="warning">
-      !!!ÜCRETİ GÖNDEREN KİŞİNİN ADI SOYADI YAZILMASI GEREKMEKTEDİR!!!
-    </div>
-
+  <div class="label">Alıcı Adı</div>
+  <div id="alici" class="info">
+    ÖZELLER DAYANIKLI TÜKETİM MALLARI LTD. ŞTİ.
   </div>
+
+  <div class="label">IBAN</div>
+  <div id="iban" class="info">
+    TR 49 0001 0023 2941 8015 6450 02
+  </div>
+
+  <div class="label">Açıklama</div>
+  <div class="info">
+    [Ad Soyad]
+  </div>
+  
+  <div class="label">!!! ÖNEMLİ !!!</div>
+  <div class="info" style="color:#000000; font-weight:900;">
+    !!!ÜCRETİ GÖNDEREN KİŞİNİN ADI SOYADI YAZILMASI GEREKMEKTEDİR!!!
+  </div>
+
+  <button class="button" onclick="copyIBAN()">
+    IBAN Kopyala
+  </button>
+
+  <button class="button" onclick="copyAlici()">
+    Alıcı Adı Kopyala
+  </button>
 
 </div>
+
+<script>
+function copyIBAN() {
+  var text = document.getElementById("iban").innerText;
+  navigator.clipboard.writeText(text);
+  alert("IBAN kopyalandı");
+}
+
+function copyAlici() {
+  var text = document.getElementById("alici").innerText;
+  navigator.clipboard.writeText(text);
+  alert("ALICI ADI KOPYALANDI");
+}
+</script>
 
 </body>
 </html>
