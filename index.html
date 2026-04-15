@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ödeme</title>
 
+
+
+
 <style>
 * {
   box-sizing: border-box;
@@ -13,55 +16,43 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ececec, #d6d6d6);
+  background: #f5f5f5;
   text-align: center;
 }
 
-/* HEADER */
+/* ÜST ALAN */
 .header {
-  padding: 20px;
+  background: #ffffff;
+  padding: 20px 10px;
 }
 
 .header img {
-  width: 150px;
+  width: 160px;
+  max-width: 80%;
 }
 
 /* KART */
 .card {
-  position: relative;
   background: white;
   width: 90%;
   max-width: 400px;
-  margin: 20px auto;
-  padding: 25px 20px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  overflow: hidden;
-}
-
-/* 🔴 KURDELE */
-.ribbon {
-  position: absolute;
-  top: 15px;
-  right: -60px;
-  background: #d32f2f;
-  color: white;
-  padding: 8px 60px;
-  transform: rotate(45deg);
-  font-size: 12px;
-  font-weight: bold;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  margin: -20px auto 20px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
 /* BAŞLIK */
 .title img {
-  width: 200px;
+  width: 100%;
+  max-width: 250px;
+  height: auto;
   margin-bottom: 15px;
 }
 
 /* LABEL */
 .label {
-  font-size: 13px;
+  font-size: 14px;
   color: #777;
   margin: 10px 0 5px;
   text-align: left;
@@ -69,52 +60,69 @@ body {
 
 /* BİLGİ */
 .info {
-  background: #f7f7f7;
+  background: #f1f1f1;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 10px;
   font-weight: bold;
+  word-break: break-word;
   font-size: 14px;
-  margin-bottom: 8px;
 }
 
 /* BUTON */
 .button {
-  background: linear-gradient(45deg, #d32f2f, #ff5252);
+  background: #d32f2f;
   color: white;
   border: none;
-  padding: 13px;
+  padding: 12px;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 10px;
   font-size: 15px;
   cursor: pointer;
-  margin-top: 10px;
   transition: 0.3s;
+  margin-top: 15px;
 }
 
 .button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: #b71c1c;
+}
+
+/* MOBİL DAHA KÜÇÜK EKRAN */
+@media (max-width: 480px) {
+  .header img {
+    width: 130px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .info {
+    font-size: 13px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
-  <img src="logo.png">
+  <img src="logo.png" alt="Özeller Logo">
 </div>
 
+<!-- KART -->
 <div class="card">
-
-  <!-- 🔥 KURDELE -->
-  <div class="ribbon">HAVALE</div>
-
   <div class="title">
-    <img src="Ekran görüntüsü 2026-04-12 211042.png">
+    <img src="Ekran görüntüsü 2026-04-12 211042.png" alt="">
   </div>
 
   <div class="label">Alıcı Adı</div>
-  <div id="alici" class="info">
+  <div class="info">
     ÖZELLER DAYANIKLI TÜKETİM MALLARI LTD. ŞTİ.
   </div>
 
@@ -123,24 +131,20 @@ body {
     TR 49 0001 0023 2941 8015 6450 02
   </div>
 
-  <div class="label">Açıklama</div>
-  <div class="info">
+  <div class="label">Açıklama </div>
+  <div id="iban" class="info">
     [Ad Soyad]
   </div>
   
-  <div class="label">!!! ÖNEMLİ !!!</div>
-  <div class="info" style="color:#000000; font-weight:900;">
+   <div class="label">!!! ÖNEMLİ !!!</div>
+  <div id="iban" class="info">
     !!!ÜCRETİ GÖNDEREN KİŞİNİN ADI SOYADI YAZILMASI GEREKMEKTEDİR!!!
   </div>
 
+  
   <button class="button" onclick="copyIBAN()">
     IBAN Kopyala
   </button>
-
-  <button class="button" onclick="copyAlici()">
-    Alıcı Adı Kopyala
-  </button>
-
 </div>
 
 <script>
@@ -148,12 +152,6 @@ function copyIBAN() {
   var text = document.getElementById("iban").innerText;
   navigator.clipboard.writeText(text);
   alert("IBAN kopyalandı");
-}
-
-function copyAlici() {
-  var text = document.getElementById("alici").innerText;
-  navigator.clipboard.writeText(text);
-  alert("ALICI ADI KOPYALANDI");
 }
 </script>
 
