@@ -13,7 +13,10 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ececec, #d6d6d6);
+
+  /* 🌿 AÇIK PREMIUM ARKA PLAN */
+  background: linear-gradient(135deg, #f7f7f7, #e9eef3);
+
   text-align: center;
 }
 
@@ -30,27 +33,35 @@ body {
 .card {
   position: relative;
   background: white;
+
   width: 90%;
   max-width: 400px;
   margin: 20px auto;
-  padding: 25px 20px;
+  padding: 25px;
+
   border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  overflow: hidden;
+
+  /* 💎 SOFT GÖLGE */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* 🔴 KURDELE */
+/* 🎀 SOFT KURDELE */
 .ribbon {
   position: absolute;
   top: 15px;
   right: -60px;
-  background: #d32f2f;
+
+  background: linear-gradient(45deg, #ff6b6b, #ff3d3d);
+
   color: white;
-  padding: 8px 60px;
+  padding: 8px 65px;
+
   transform: rotate(45deg);
+
   font-size: 12px;
   font-weight: bold;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
 
 /* BAŞLIK */
@@ -69,7 +80,7 @@ body {
 
 /* BİLGİ */
 .info {
-  background: #f7f7f7;
+  background: #f4f6f8;
   padding: 12px;
   border-radius: 12px;
   font-weight: bold;
@@ -79,7 +90,7 @@ body {
 
 /* BUTON */
 .button {
-  background: linear-gradient(45deg, #d32f2f, #ff5252);
+  background: linear-gradient(45deg, #ff4d4d, #d32f2f);
   color: white;
   border: none;
   padding: 13px;
@@ -88,7 +99,7 @@ body {
   font-size: 15px;
   cursor: pointer;
   margin-top: 10px;
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 .button:hover {
@@ -106,7 +117,7 @@ body {
 
 <div class="card">
 
-  <!-- 🔥 KURDELE -->
+  <!-- 🎀 KURDELE -->
   <div class="ribbon">ÖDEME</div>
 
   <div class="title">
