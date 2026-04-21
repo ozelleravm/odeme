@@ -6,67 +6,47 @@
 <title>Ödeme</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-
-  /* 🌿 AÇIK PREMIUM ARKA PLAN */
-  background: linear-gradient(135deg, #f7f7f7, #e9eef3);
-
+  background: linear-gradient(135deg, #ececec, #d6d6d6);
   text-align: center;
 }
 
 /* HEADER */
-.header {
-  padding: 20px;
-}
-
-.header img {
-  width: 150px;
-}
+.header { padding: 20px; }
+.header img { width: 150px; }
 
 /* KART */
 .card {
   position: relative;
   background: white;
-
   width: 90%;
   max-width: 400px;
   margin: 20px auto;
-  padding: 25px;
-
+  padding: 25px 20px;
   border-radius: 20px;
-
-  /* 💎 SOFT GÖLGE */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-/* 🎀 SOFT KURDELE */
+/* KURDELE */
 .ribbon {
   position: absolute;
   top: 15px;
   right: -60px;
-
-  background: linear-gradient(45deg, #ff6b6b, #ff3d3d);
-
+  background: #d32f2f;
   color: white;
-  padding: 8px 65px;
-
+  padding: 8px 60px;
   transform: rotate(45deg);
-
   font-size: 12px;
   font-weight: bold;
-
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
 
-/* BAŞLIK */
-.title img {
-  width: 200px;
+/* QR */
+.qr img {
+  width: 160px;
   margin-bottom: 15px;
 }
 
@@ -78,9 +58,9 @@ body {
   text-align: left;
 }
 
-/* BİLGİ */
+/* INFO */
 .info {
-  background: #f4f6f8;
+  background: #f7f7f7;
   padding: 12px;
   border-radius: 12px;
   font-weight: bold;
@@ -88,9 +68,9 @@ body {
   margin-bottom: 8px;
 }
 
-/* BUTON */
+/* BUTTON */
 .button {
-  background: linear-gradient(45deg, #ff4d4d, #d32f2f);
+  background: linear-gradient(45deg, #d32f2f, #ff5252);
   color: white;
   border: none;
   padding: 13px;
@@ -99,12 +79,20 @@ body {
   font-size: 15px;
   cursor: pointer;
   margin-top: 10px;
-  transition: 0.25s;
 }
 
-.button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+/* SUCCESS */
+.success {
+  display: none;
+  font-size: 60px;
+  color: green;
+  margin-top: 15px;
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
 }
 </style>
 </head>
@@ -117,54 +105,75 @@ body {
 
 <div class="card">
 
-  <!-- 🎀 KURDELE -->
-  <div class="ribbon">ÖDEME</div>
+<div class="ribbon">HAVALE</div>
 
-  <div class="title">
-    <img src="Ekran görüntüsü 2026-04-12 211042.png">
-  </div>
+<!-- ✅ QR EKLENDİ -->
+<div class="qr">
+  <img src="qr.png">
+</div>
 
-  <div class="label">Alıcı Adı</div>
-  <div id="alici" class="info">
-    ÖZELLER DAYANIKLI TÜKETİM MALLARI LTD. ŞTİ.
-  </div>
+<div class="label">Alıcı Adı</div>
+<div id="alici" class="info">
+  ÖZELLER DAYANIKLI TÜKETİM MALLARI LTD. ŞTİ.
+</div>
 
-  <div class="label">IBAN</div>
-  <div id="iban" class="info">
-    TR 49 0001 0023 2941 8015 6450 02
-  </div>
+<div class="label">IBAN</div>
+<div id="iban" class="info">
+  TR49 0001 0023 2941 8015 6450 02
+</div>
 
-  <div class="label">Açıklama</div>
-  <div class="info">
-    [Ad Soyad]
-  </div>
-  
-  <div class="label">!!! ÖNEMLİ !!!</div>
-  <div class="info" style="color:#d32f2f; font-weight:900;">
-    !!!ÜCRETİ GÖNDEREN KİŞİNİN ADI SOYADI YAZILMASI GEREKMEKTEDİR!!!
-  </div>
+<div class="label">Açıklama</div>
+<div class="info">
+  [Ad Soyad]
+</div>
 
-  <button class="button" onclick="copyIBAN()">
-    IBAN Kopyala
-  </button>
+<div class="label">!!! ÖNEMLİ !!!</div>
+<div class="info" style="font-weight:900;">
+  Ürünü alan kişinin adı soyadı yazılmalıdır!
+</div>
 
-  <button class="button" onclick="copyAlici()">
-    Alıcı Adı Kopyala
-  </button>
+<button class="button" onclick="copyIBAN()">IBAN Kopyala</button>
+<button class="button" onclick="copyAlici()">Alıcı Adı Kopyala</button>
+
+<!-- 🔥 BANKA SEÇİM -->
+<button class="button" onclick="openBank('ziraat')">Ziraat</button>
+<button class="button" onclick="openBank('garanti')">Garanti</button>
+<button class="button" onclick="openBank('isbank')">İş Bankası</button>
+
+<!-- 💸 ÖDEME TAMAMLANDI -->
+<button class="button" onclick="paid()">Ödeme Yaptım</button>
+
+<div id="success" class="success">✔</div>
 
 </div>
 
 <script>
 function copyIBAN() {
-  var text = document.getElementById("iban").innerText;
-  navigator.clipboard.writeText(text);
+  navigator.clipboard.writeText(document.getElementById("iban").innerText);
   alert("IBAN kopyalandı");
 }
 
 function copyAlici() {
-  var text = document.getElementById("alici").innerText;
-  navigator.clipboard.writeText(text);
-  alert("ALICI ADI KOPYALANDI");
+  navigator.clipboard.writeText(document.getElementById("alici").innerText);
+  alert("Alıcı adı kopyalandı");
+}
+
+/* BANKA AÇ */
+function openBank(bank){
+  if(bank==="ziraat"){
+    window.location.href="https://play.google.com/store/apps/details?id=com.ziraat.ziraatmobil";
+  }
+  if(bank==="garanti"){
+    window.location.href="https://play.google.com/store/apps/details?id=com.garanti.cepsube";
+  }
+  if(bank==="isbank"){
+    window.location.href="https://play.google.com/store/apps/details?id=com.pozitron.iscep";
+  }
+}
+
+/* ÖDENDİ */
+function paid(){
+  document.getElementById("success").style.display="block";
 }
 </script>
 

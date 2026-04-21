@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ödeme</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ececec, #d6d6d6);
+  text-align: center;
+}
+
+/* HEADER */
+.header {
+  padding: 20px;
+}
+
+.header img {
+  width: 150px;
+}
+
+/* KART */
+.card {
+  position: relative;
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 25px 20px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+/* 🔴 KURDELE */
+.ribbon {
+  position: absolute;
+  top: 15px;
+  right: -60px;
+  background: #d32f2f;
+  color: white;
+  padding: 8px 60px;
+  transform: rotate(45deg);
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* BAŞLIK */
+.title img {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+/* LABEL */
+.label {
+  font-size: 13px;
+  color: #777;
+  margin: 10px 0 5px;
+  text-align: left;
+}
+
+/* BİLGİ */
+.info {
+  background: #f7f7f7;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* BUTON */
+.button {
+  background: linear-gradient(45deg, #d32f2f, #ff5252);
+  color: white;
+  border: none;
+  padding: 13px;
+  width: 100%;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* YEŞİL BİLDİRİM */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2e7d32;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  opacity: 0;
+  transition: 0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <img src="logo.png">
+</div>
+
+<div class="card">
+
+  <div class="ribbon">HAVALE</div>
+
+  <div class="title">
+    <img src="Ekran görüntüsü 2026-04-12 211042.png">
+  </div>
+
+  <div class="label">Alıcı Adı</div>
+  <div id="alici" class="info">
+    ÖZELLER DAYANIKLI TÜKETİM MALLARI LTD. ŞTİ.
+  </div>
+
+  <div class="label">IBAN</div>
+  <div id="iban" class="info">
+    TR 49 0001 0023 2941 8015 6450 02
+  </div>
+
+  <div class="label">Açıklama</div>
+  <div class="info">
+    [Ad Soyad]
+  </div>
+  
+  <div class="label">!!! ÖNEMLİ !!!</div>
+  <div class="info" style="color:#000000; font-weight:900;">
+    !!!ÜRÜNÜ ALAN KİŞİNİN ADI SOYADI YAZILMASI GEREKMEKTEDİR!!!
+  </div>
+
+  <button class="button" onclick="copyIBAN()">
+    IBAN Kopyala
+  </button>
+
+  <button class="button" onclick="copyAlici()">
+    Alıcı Adı Kopyala
+  </button>
+
+</div>
+
+<!-- YEŞİL MESAJ -->
+<div id="toast"></div>
+
+<script>
+function showToast(message){
+  var toast = document.getElementById("toast");
+  toast.innerText = "✔ " + message;
+  toast.style.opacity = "1";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+  }, 2000);
+}
+
+function copyIBAN() {
+  var text = document.getElementById("iban").innerText;
+  navigator.clipboard.writeText(text);
+  showToast("IBAN kopyalandı");
+}
+
+function copyAlici() {
+  var text = document.getElementById("alici").innerText;
+  navigator.clipboard.writeText(text);
+  showToast("Alıcı adı kopyalandı");
+}
+</script>
+
+</body>
+</html>
