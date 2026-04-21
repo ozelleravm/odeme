@@ -95,6 +95,21 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
+
+/* YEŞİL BİLDİRİM */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2e7d32;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  opacity: 0;
+  transition: 0.3s;
+}
 </style>
 </head>
 
@@ -106,7 +121,6 @@ body {
 
 <div class="card">
 
-  <!-- 🔥 KURDELE -->
   <div class="ribbon">HAVALE</div>
 
   <div class="title">
@@ -143,17 +157,30 @@ body {
 
 </div>
 
+<!-- YEŞİL MESAJ -->
+<div id="toast"></div>
+
 <script>
+function showToast(message){
+  var toast = document.getElementById("toast");
+  toast.innerText = "✔ " + message;
+  toast.style.opacity = "1";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+  }, 2000);
+}
+
 function copyIBAN() {
   var text = document.getElementById("iban").innerText;
   navigator.clipboard.writeText(text);
-  alert("IBAN kopyalandı");
+  showToast("IBAN kopyalandı");
 }
 
 function copyAlici() {
   var text = document.getElementById("alici").innerText;
   navigator.clipboard.writeText(text);
-  alert("ALICI ADI KOPYALANDI");
+  showToast("Alıcı adı kopyalandı");
 }
 </script>
 
